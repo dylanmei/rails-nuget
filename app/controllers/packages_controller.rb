@@ -20,7 +20,7 @@ class PackagesController < ApplicationController
 			if meth.nil? || meth == ""
 				return nil
 			end
-			meth = meth.to_sym
+      meth = meth.capitalize.to_sym
 
 			params = match[2]
 			params = if params.nil? || params == ""
@@ -37,6 +37,7 @@ class PackagesController < ApplicationController
 		@query = self.class.parse_id params[:area]
 
 		if not @query.nil?
+
 			@group = send @groups[@query[0]]
 			raise ActionController::RoutingError.new('Not Found') if @group.nil?	
 
