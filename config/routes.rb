@@ -3,9 +3,9 @@ Nuget::Application.routes.draw do
     package_constraints = { :package_id => /[^\/]*/, :version => /[^\/]*/ }
 
 		scope '/package' do
-			put '' => 'packages#create'
-			delete ':package_id/:version' => 'packages#delete', :constraints => package_constraints
-			get ':package_id/:version' => 'packages#show', :constraints => package_constraints
+			put '' => 'packages#create', :as => :create_package
+			delete ':package_id/:version' => 'packages#delete', :constraints => package_constraints, :as => :delete_package
+			get ':package_id/:version' => 'packages#show', :constraints => package_constraints, :as => :show_package
 		end
 
     scope '/packages' do
@@ -15,9 +15,9 @@ Nuget::Application.routes.draw do
           :constraints => { :area => /.*/ }
     end
 
-		put '' => 'packages#create'
-		get ':package_id/:version' => 'packages#show', :constraints => package_constraints
-		delete ':package_id/:version' => 'packages#delete', :constraints => package_constraints
+		#put '' => 'packages#create'
+		#get ':package_id/:version' => 'packages#show', :constraints => package_constraints
+		#delete ':package_id/:version' => 'packages#delete', :constraints => package_constraints
 	end
 
 	scope '/api' do
