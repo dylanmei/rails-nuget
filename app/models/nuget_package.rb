@@ -1,11 +1,11 @@
-require 'zip/zip'
+require 'zip'
 require 'digest/sha1'
 require 'nokogiri'
 
 class NugetPackage
 	def initialize file
 		@path = file
-		@zip = Zip::ZipFile.open(file)
+		@zip = Zip::File.open(file)
 		if not @zip.nil?
 			@rels = Nokogiri::XML(@zip.read("_rels/.rels"))
 		end
