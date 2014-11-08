@@ -3,19 +3,20 @@ Nuget::Application.routes.draw do
 
 	def api
 		scope '/package' do
-			put '' => 'packages#create', :as => :create_package
+			#put '' => 'packages#create', :as => :create_package
 			delete ':package_id/:version' => 'packages#delete', :constraints => { :package_id => /[^\/]*/, :version => /[^\/]*/ }, :as => :delete_package
 			get ':package_id/:version' => 'packages#show', :constraints => { :package_id => /[^\/]*/, :version => /[^\/]*/ }, :as => :show_package
 		end
 
 		put '' => 'packages#create', :as => :create_package
-		delete ':package_id/:version' => 'packages#delete', :constraints => { :package_id => /[^\/]*/, :version => /[^\/]*/ }, :as => :delete_package
-		get ':package_id/:version' => 'packages#show', :constraints => { :package_id => /[^\/]*/, :version => /[^\/]*/ }, :as => :show_package
+		#delete ':package_id/:version' => 'packages#delete', :constraints => { :package_id => /[^\/]*/, :version => /[^\/]*/ }, :as => :delete_package
+		#get ':package_id/:version' => 'packages#show', :constraints => { :package_id => /[^\/]*/, :version => /[^\/]*/ }, :as => :show_package
 
 		get ':metadata' => 'packages#metadata', :constraints => { :metadata => /\$metadata/ }
 		get ':area' => 'packages#index', :defaults => { :format => 'xml' },
 				:constraints => { :area => /.*/ }, :as => :packages
-		root :to => 'packages#index', :defaults => { :format => 'xml' }
+		
+    #root :to => 'packages#index', :defaults => { :format => 'xml' }
 	end
 
 	scope '/api' do
